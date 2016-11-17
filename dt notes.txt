@@ -1,0 +1,51 @@
+Additional variables added: the year, month, dayofweek, and day of the date viewed, checkin time, and checkout time.
+Also, the hour of date viewed.
+
+Variables used for low depths: 
+
+Max depth of 1: 4.609% accurate, hotel_market
+Max depth of 2: 5.583% accurate, hotel_market > is_booking > cnt
+Max depth of 3: 6.821% accurate, hotel_market > cnt > is_booking
+Max depth of 4: 8.197% accurate, cnt > hotel_market > is_booking > is_package > srch_destination_id
+Max depth of 5: 9.253% accurate, cnt > hotel_market > is_booking > is_package > srch_destination_id > date_time_month
+
+Minimum depth for which all variables were used to some degree: 9 (Accuracy: 13.034%)
+
+[Everything from here on out uses max depth of 10.]
+
+Accuracy with all features: 14.0585%
+After removing hotel_continent: 14.0580%
+...and hotel_country: 14.0577%
+...and srch_ci_dayofweek: 14.0586% [yes, it actually went UP]
+...and date_time_hour: 14.0569%
+...and srch_rm_cnt: 14.0573% [up again...what's with these useless features, lol]
+...and srch_co_year: 14.0557%
+...and channel: 14.0558% [WHY DO THESE FEATURES EXIST]
+...and date_time_year: 14.0537%
+...and is_mobile: 14.0530%
+...and date_time_dayofweek: 14.0536% [...you know, I actually thought this one would matter...]
+...and srch_co_dayofweek: 14.0560%
+...and srch_ci_day: 14.0554%
+...and srch_co_month: 14.0526%
+...and date_time_day: 14.0500%
+...and posa_continent: 14.0445%
+...and srch_co_day: 14.0444%
+...and srch_adults_cnt: 14.0451%
+...and site_name: 14.0388%
+...and is_package: 14.0400%
+...and srch_ci_year: 14.0321%
+...and srch_children_ct: 14.0258%
+...and srch_ci_month: 14.0130%
+...and user_location_country: 14.0054%
+...and user_location_region: 13.9926%
+...and user_location_city: 13.9810%
+
+(removing any of the others resulted in steeper losses in performance than I would have liked)
+
+
+Conclusions:
+
+By far the most important variables are cnt, hotel_market, and is_booking, in that order
+Only 8 variables are essential: orig_destination_distance, user_id, srch_destination_id, srch_destination_type_id, hotel_market, is_booking, cnt, and date_time_month
+
+destinations.csv data was not incorporated. However, since srch_destination_id is an essential variable, this can be done with the reduced set of variables in the future.
