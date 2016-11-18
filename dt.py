@@ -19,7 +19,7 @@ train7 = pd.read_csv('train_7.csv', header=None, parse_dates=[0,11,12])
 train8 = pd.read_csv('train_8.csv', header=None, parse_dates=[0,11,12])
 train9 = pd.read_csv('train_9.csv', header=None, parse_dates=[0,11,12])
 dest = pd.read_csv('destinations.csv')
-test = pd.read_csv('test.csv', parse_dates=['date_time', 'srch_ci', 'srch_co'])
+test = pd.read_csv('test.csv', parse_dates=['date_time', 'srch_co'])
 test = test.drop('id', 1)
 
 data = pd.concat([train0, train1, train2, train3, train4, train5, train6, train7, train8, train9])
@@ -35,7 +35,8 @@ data = data.drop('is_booking', 1)
 data_y = data["hotel_cluster"]
 data = data.drop('hotel_cluster', 1)
 test['srch_ci'].replace(to_replace='nan', value=pd.to_datetime('1/1/2017'), inplace=True)
-test.loc['srch_ci'] = pd.to_datetime(test['srch_ci'], errors='coerce')
+test.set_value(312920, 'srch_ci', pd.to_datetime('1/21/2016'))
+test['srch_ci'] = pd.to_datetime(test['srch_ci'], errors='coerce')
 test['srch_ci'].fillna(value=pd.to_datetime('1/1/2017'), inplace=True)
 test['srch_co'].fillna(value=pd.to_datetime('1/8/2017'), inplace=True)
                 
@@ -79,7 +80,7 @@ def addFeatures(df_input):
     
 data = addFeatures(data)
 test = addFeatures(test)
-
+print "glitch fixed"
 
 
 
